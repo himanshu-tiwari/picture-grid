@@ -6,9 +6,9 @@ import 'antd/dist/antd.css';
 
 const App = props => {
 	return <div className="App">
-		<header>
+		<nav>
 			<SearchBar />
-		</header>
+		</nav>
 
 		<PictureGrid />
 	</div>;

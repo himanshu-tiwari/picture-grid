@@ -1,0 +1,31 @@
+.search-bar {
+    .ant-select {
+        width: 50vw;
+
+        
+        // &-selection--multiple {
+        //     padding-bottom: 0;
+        // }
+        // .ant-select-selection__rendered {
+        //     margin: 0;
+        //     padding: 5px 10px;
+        // }
+    
+        // .ant-select-selection--multiple > ul > li,
+        // .ant-select-selection--multiple .ant-select-selection__rendered > ul > li {
+        //     border: none;
+        //     padding: 0;
+        // }
+    
+        // .ant-select-selection--multiple .ant-select-selection__choice__remove {
+        //     display: none;
+        // }
+    }
+    .ant-select-open .ant-select-arrow-icon svg {
+        transform: none;
+    }
+}
+
+.searches.hidden {
+    display: none;
+}

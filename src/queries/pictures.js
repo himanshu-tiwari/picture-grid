@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { key } from '../config/flickr';
 
 export const searchPictures = async (dispatch, input) => {
+    console.log(input);
     try {
         const response = await Axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${
                 key

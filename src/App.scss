@@ -1,3 +1,17 @@
 .App {
 	text-align: center;
+
+	nav {
+		position: sticky;
+		top: 0;
+		right: 0;
+		left: 0;
+		background: #2f2c2c;
+		color: #fff;
+		height: calc(150px + 2vh);
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		padding-bottom: 20px;
+	}
 }

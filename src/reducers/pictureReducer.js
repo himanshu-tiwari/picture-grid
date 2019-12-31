@@ -47,6 +47,15 @@ export const pictureReducer = (state, action) => {
 				...state,
 				...action.payload
 			};
+		
+		case 'RESET_STATE':
+			return {
+				photos: { page: 0, photo: [] },
+				stat: "ok",
+				loading: false,
+				fetchingMore: false,
+				text: ""
+			};
 
 		default:
 			return state;
