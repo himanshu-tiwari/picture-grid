@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './index.scss';
 import { PictureContext } from '../../contexts/PictureContext';
 import { searchPictures, loadMorePictures } from '../../queries/pictures';
-import { Select, Icon } from 'antd';
+import { Select, Icon, Button } from 'antd';
 import { isNonEmptyArray, isNonEmptyString, isJsonParsable } from '../../helpers/checks';
 
 const { Option } = Select;
@@ -60,10 +60,22 @@ const SearchBar = props => {
                 option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
             dropdownClassName={`searches ${
-                !(isNonEmptyArray(searches) || isNonEmptyString(searchText)) && "hidden"
+                !(isNonEmptyArray(searches) || isNonEmptyString(searchText)) && "ant-select-dropdown-hidden"
             }`}
             value={searchText}
             suffixIcon={<Icon type="search" />}
+            dropdownRender={menu => <div className="custom-dropdown-container">
+                { menu }
+                <Button
+                    onMouseDown={e => e.preventDefault()}
+                    onClick={e => {
+                        e.stopPropagation();
+                        setSearches([]);
+                    }}
+                >
+                    Clear
+                </Button>
+            </div>}
         >{
             isNonEmptyString(searchText)
             ? [...new Set([ searchText, ...searches ])].map(search => <Option

@@ -12,6 +12,22 @@
     }
 }
 
-.searches.hidden {
-    display: none;
+.custom-dropdown-container {
+    position: relative;
+    
+    .ant-btn {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        background-color: #f12e52;
+        color: white;
+        z-index: 9999;
+    }
+    .ant-btn:hover,
+    .ant-btn:focus {
+        background-color: rgba(241, 46, 82, 0.8);
+        border-color: rgba(241, 46, 82, 0.8);
+        color: white;
+    }
+
 }
