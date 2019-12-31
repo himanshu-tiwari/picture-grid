@@ -12,7 +12,6 @@ const PictureContextProvider = (props) => {
 		text: ""
 	});
 
-	console.log(state);
 	return <PictureContext.Provider value={{ ...state, dispatch }}>
 		{props.children}
 	</PictureContext.Provider>;

@@ -9,7 +9,8 @@ const { Option } = Select;
 
 const SearchBar = props => {
     const { loading, dispatch, text, photos } = useContext(PictureContext);
-    const [searchText, setSearchText] = useState("");
+    
+    const [searchText, setSearchText] = useState(text);
     const [searches, setSearches] = useState(
         isJsonParsable(window.localStorage.getItem("searches")) &&
         isNonEmptyArray(JSON.parse(window.localStorage.getItem("searches")))
@@ -22,9 +23,6 @@ const SearchBar = props => {
             dispatch({ type: 'BEGIN_SEARCH' });
             searchPictures(dispatch, { text: searchText });
         }
-
-        // dispatch({ type: 'BEGIN_LOAD_MORE' });
-        // loadMorePictures(dispatch, { text: searchText, page: photos.page+1 });
     }, [searchText]);
 
     useEffect(() => {
@@ -32,7 +30,7 @@ const SearchBar = props => {
     }, [searches]);
 
     const handleChange = (value, save) => {
-        if (typeof(value) === "string") {
+        if (isNonEmptyString(value)) {
             setSearchText(value);
         } else {
             setSearchText("");

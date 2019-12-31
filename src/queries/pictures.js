@@ -2,13 +2,12 @@ import Axios from 'axios';
 import { key } from '../config/flickr';
 
 export const searchPictures = async (dispatch, input) => {
-    console.log(input);
     try {
         const response = await Axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${
                 key
             }&text=${
-                ""
-            }&media=photos&per_page=10&page=${
+                input.text
+            }&media=photos&per_page=12&page=${
                 1
             }&format=json&nojsoncallback=1`);
             
@@ -51,7 +50,7 @@ export const loadMorePictures = async (dispatch, input) => {
                 key
             }&text=${
                 input.text
-            }&media=photos&per_page=10&page=${
+            }&media=photos&per_page=12&page=${
                 input.page
             }&format=json&nojsoncallback=1`);
         
