@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './index.scss';
 
-const PictureGrid = props => {
-    return <div className="picture-grid">Grid</div>;
+class PictureGrid extends Component {
+    render() {
+        return <div className="picture-grid">Grid</div>;
+    }
 };
 
 export default PictureGrid;
