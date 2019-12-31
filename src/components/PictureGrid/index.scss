@@ -1,3 +1,32 @@
 .picture-grid {
-    height: 100vh;
+    margin-bottom: 50px;
+    
+    &:not(.empty) {
+        background: #ffffff;
+        padding: 20px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 50px;
+
+        .picture {
+            background-color: transparent;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+    &.empty {
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+    }
+}
+.ant-alert {
+    text-align: left;
 }
