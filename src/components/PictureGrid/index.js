@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './index.scss';
 import { PictureContext } from '../../contexts/PictureContext';
 import { isObject, isNonEmptyArray, isNonEmptyString } from '../../helpers/checks';
 import { loadMorePictures } from '../../queries/pictures';
-import { Empty, Alert, Spin } from 'antd';
+import { Empty, Alert, Spin, Modal, Card } from 'antd';
 
 const PictureGrid = props => {
     const { loading, dispatch, text, photos, fetchingMore, stat, message } = useContext(PictureContext);
+    const [modalState, setModalState] = useState({ visible: false, picture: {}});
 
     const handleScroll = () => {
         if (
@@ -58,7 +59,8 @@ const PictureGrid = props => {
                 isObject(photos) && isNonEmptyArray(photos.photo)
                 ? photos.photo
                     .map((picture, i) => <div className="picture" key={i}>
-                        <img src={`https://farm${
+                        <img
+                            src={`https://farm${
                                 picture.farm
                             }.staticflickr.com/${
                                 picture.server
@@ -67,18 +69,43 @@ const PictureGrid = props => {
                             }_${
                                 picture.secret
                             }.jpg`}
+                            alt={picture.title}
+                            onClick={() => setModalState({ visible: true, picture })}
                         />
                     </div>)
                 : (
                     loading === true
                     ? <Spin size="large" />
-                    : <Empty description="Nothing to show here!" />
+                    : <Empty description="Nothing to show here! Try out a new search" />
                 )
             }
         </div>
 
+        { fetchingMore && <Spin size="large" /> }
+
         {
-            fetchingMore && <Spin size="large" />
+            modalState.visible === true &&
+            isObject(modalState.picture) &&
+            <Modal
+                visible={modalState.visible}
+                footer={null}
+                onCancel={() => setModalState({...modalState, visible: false})}
+                className="img-modal"
+                title={isNonEmptyString(modalState.picture.title) ? modalState.picture.title : null}
+            >
+                <img
+                    src={`https://farm${
+                        modalState.picture.farm
+                    }.staticflickr.com/${
+                        modalState.picture.server
+                    }/${
+                        modalState.picture.id
+                    }_${
+                        modalState.picture.secret
+                    }.jpg`}
+                    alt={modalState.picture.title}
+                />
+            </Modal>
         }
     </React.Fragment>;
 };
